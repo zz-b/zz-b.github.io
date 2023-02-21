@@ -8,7 +8,7 @@
     <link href="/2023/02/20/%E6%B5%8B%E8%AF%95%E6%96%87%E7%AB%A0/"/>
     <url>/2023/02/20/%E6%B5%8B%E8%AF%95%E6%96%87%E7%AB%A0/</url>
     
-    <content type="html"><![CDATA[<p>这是一篇测试文章</p><img src="/2023/02/20/%E6%B5%8B%E8%AF%95%E6%96%87%E7%AB%A0/cat.png" class="" title="图片引用方法以">]]></content>
+    <content type="html"><![CDATA[<p>这是一篇测试文章</p><img src="/2023/02/20/%E6%B5%8B%E8%AF%95%E6%96%87%E7%AB%A0/cat.png" class="" title="图片引用方法以"><div class="note note-success">            <p>文字 或者 <code>markdown</code> 均可</p>          </div><div class="note note-primary">            <p>文字 或者 <code>markdown</code> 均可</p>          </div><div class="note note-warning">            <p>文字 或者 <code>markdown</code> 均可</p>          </div><span class="label label-primary">text</span><span class="label label-default">text2</span><span class="label label-info">text3</span><span class="label label-success">text4</span><span class="label label-warning">text5</span><span class="label label-danger">text6</span><a class="btn" href="https://www.baidu.com"  title="百度" target="_blank">百度</a><!-- <a class="btn" href="https://www.baidu.com" title="title">text</a> -->]]></content>
     
     
     <categories>
