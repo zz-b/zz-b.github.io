@@ -77,6 +77,37 @@
   
   
   <entry>
+    <title>defineProperty</title>
+    <link href="/2022/04/22/defineProperty/"/>
+    <url>/2022/04/22/defineProperty/</url>
+    
+    <content type="html"><![CDATA[<p>Object.defineProperty() 方法可以直接在一个对象上定义一个新属性，或者修改一个对象的现有属性，并返回此对象。</p><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><code class="hljs JS"><span class="hljs-keyword">var</span> obj = &#123;<span class="hljs-attr">name</span>:<span class="hljs-string">&#x27;张三&#x27;</span>, <span class="hljs-attr">age</span>:<span class="hljs-number">19</span>&#125;;<br><span class="hljs-keyword">var</span> new_obj = <span class="hljs-title class_">Object</span>.<span class="hljs-title function_">defineProperty</span>(obj, <span class="hljs-string">&quot;name&quot;</span>, &#123;<br>  <span class="hljs-attr">get</span>: <span class="hljs-keyword">function</span>(<span class="hljs-params"></span>)&#123;<br>    <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">&quot;调用了get方法&quot;</span>);<br>    <span class="hljs-keyword">return</span> obj[<span class="hljs-string">&#x27;name&#x27;</span>];<br>  &#125;,<br>  <span class="hljs-attr">set</span>: <span class="hljs-keyword">function</span>(<span class="hljs-params">value</span>)&#123;<br>    <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">&quot;调用了set方法&quot;</span>);<br>    obj[<span class="hljs-string">&#x27;name&#x27;</span>] = value;<br>  &#125;<br>&#125;)<br><span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(obj === new_obj)<span class="hljs-comment">//true</span><br><span class="hljs-comment">// 注意：调用set和get函数时一定要外面包一层函数，否则会一直递归执行（下面两行代码不能直接执行）</span><br>new_obj.<span class="hljs-property">name</span>;<br>obj.<span class="hljs-property">name</span> = <span class="hljs-string">&quot;李四&quot;</span><br><br></code></pre></td></tr></table></figure>]]></content>
+    
+    
+    <categories>
+      
+      <category>JavaScript</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>es5</tag>
+      
+      <tag>自定义属性</tag>
+      
+      <tag>属性控制</tag>
+      
+      <tag>Object方法</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
     <title>Antimalware Service Executable占用过高cpu问题</title>
     <link href="/2022/02/21/Executable%E5%8D%A0%E7%94%A8%E8%BF%87%E9%AB%98cpu%E9%97%AE%E9%A2%98/"/>
     <url>/2022/02/21/Executable%E5%8D%A0%E7%94%A8%E8%BF%87%E9%AB%98cpu%E9%97%AE%E9%A2%98/</url>
