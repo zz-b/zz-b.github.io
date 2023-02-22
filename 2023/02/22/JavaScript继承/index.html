@@ -24,8 +24,9 @@
 <meta property="og:description" content="由于JavaScript语言特性，它的继承类的继承方式是通过原型配合构造函数完成的，即使是ES6中出现的所谓的class和extends关键字，也仅仅是一种语法糖而已！ Quick Startes5的继承es5中属性的继续通过子类调用父类的构造函数（一般通过call的方式），方法的继承通过原型（子类的prototype指向父类的实例）。 123456789101112131415161718192">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="http://example.com/2023/02/22/JavaScript%E7%BB%A7%E6%89%BF/jc.png">
+<meta property="og:image" content="http://example.com/2023/02/22/JavaScript%E7%BB%A7%E6%89%BF/jc2.png">
 <meta property="article:published_time" content="2023-02-22T06:26:20.000Z">
-<meta property="article:modified_time" content="2023-02-22T07:07:48.138Z">
+<meta property="article:modified_time" content="2023-02-22T13:33:33.582Z">
 <meta property="article:author" content="zzb">
 <meta property="article:tag" content="继承">
 <meta property="article:tag" content="js ">
@@ -229,7 +230,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          1.1k 字
+          2.2k 字
         
       </span>
     
@@ -240,7 +241,7 @@
         
         
         
-          10 分钟
+          19 分钟
         
       </span>
     
@@ -296,7 +297,20 @@
     padding: 2px;">显然子类的原型上没有sayHello方法，但子类的实例却能直接调用父类原型上的方法</div>
 </center>
 
-<h3 id="es6的继承"><a href="#es6的继承" class="headerlink" title="es6的继承"></a>es6的继承</h3><h3 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h3>
+<h3 id="es6的继承"><a href="#es6的继承" class="headerlink" title="es6的继承"></a>es6的继承</h3><p>es6提出了class、extends关键字，写起来更加的方便简洁，更像传统面向对象语言（比如Java、C++、Python等）的语法，但这也仅仅是一种语法糖而已，并没有改变其基于原型的本质。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><code class="hljs JS"><span class="hljs-keyword">class</span> <span class="hljs-title class_">Feather</span> &#123;<br>  <span class="hljs-title function_">constructor</span>(<span class="hljs-params">name, age</span>)&#123;<br>    <span class="hljs-variable language_">this</span>.<span class="hljs-property">name</span> = name;<br>    <span class="hljs-variable language_">this</span>.<span class="hljs-property">age</span> = age;<br>  &#125;<br>  <span class="hljs-title function_">sayHello</span>(<span class="hljs-params"></span>)&#123;<br>    <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">&quot;我是&quot;</span> + <span class="hljs-variable language_">this</span>.<span class="hljs-property">name</span> + <span class="hljs-string">&quot;,我&quot;</span> + <span class="hljs-variable language_">this</span>.<span class="hljs-property">age</span> + <span class="hljs-string">&quot;岁了。&quot;</span>);<br>  &#125;<br>&#125;<br><span class="hljs-keyword">class</span> <span class="hljs-title class_">Son</span> <span class="hljs-keyword">extends</span> <span class="hljs-title class_ inherited__">Feather</span>&#123;<br>  <span class="hljs-title function_">constructor</span>(<span class="hljs-params">name, age, score</span>)&#123;<br>    <span class="hljs-variable language_">super</span>(name, age);<br>    <span class="hljs-variable language_">this</span>.<span class="hljs-property">score</span> = score;<br>  &#125;<br>  <span class="hljs-title function_">study</span>(<span class="hljs-params"></span>)&#123;<br>    <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-variable language_">this</span>.<span class="hljs-property">name</span> + <span class="hljs-string">&quot;在学习。&quot;</span>);<br>  &#125;<br>&#125;<br><br><span class="hljs-keyword">const</span> f = <span class="hljs-keyword">new</span> <span class="hljs-title class_">Feather</span>(<span class="hljs-string">&quot;老李&quot;</span>, <span class="hljs-number">40</span>);<br><span class="hljs-keyword">const</span> s = <span class="hljs-keyword">new</span> <span class="hljs-title class_">Son</span>(<span class="hljs-string">&quot;小李&quot;</span>, <span class="hljs-number">10</span>, <span class="hljs-number">93</span>);<br><br><span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(f);<br><span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(s);<br>f.<span class="hljs-title function_">sayHello</span>();<span class="hljs-comment">//sayHello本来是父类的共有方法，所以父类的实例自然可以直接使用</span><br>s.<span class="hljs-title function_">sayHello</span>();<span class="hljs-comment">//子类虽然没有sayHello共有方法，但它直接继承了父类的方法，所以子类的实例自然可以调用这个方法。</span><br>s.<span class="hljs-title function_">study</span>();<span class="hljs-comment">//子类独有的方法，其实例可以直接使用。</span><br></code></pre></td></tr></table></figure>
+
+<center>
+    <img src="jc2.png" srcset="/img/loading.gif" lazyload>
+    <br>
+    <div style="color:orange; border-bottom: 1px solid #d9d9d9;
+    display: inline-block;
+    color: #999;
+    padding: 2px;">基于ES6的继承</div>
+</center>
+
+<h3 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h3><p>ES6的class加extend是继承方式本质仍然是ES5的原型方式，只是看起来更加简洁方便，而且更贴切传统面向对象语言的特点。还有就是ES5中继承方式有一个点必须注意：子类的原型由于改成了父类的一个实例，那么子类的原型的construct也就自然随之指向了父类的构造函数，这是不符合规范的（这个时候对子类原型添加的方法会影响父类）。所以必须进行矫正，让子类原型的construct从新指向子类自己的构造函数：Son.prototype.constructor &#x3D; Son;在ES6这种语法糖的情况下就不需要考虑这么多细节了。这也是语法糖的一个特点：写法更加简单，但本质却没有改变。至于ES5中用到的call方法和ES6中用到的super方法要先理解new关键字执行背后的原理了！！</p>
+
                 
               </div>
             
