@@ -16,21 +16,24 @@
   <meta name="author" content="zzb">
   <meta name="keywords" content="">
   
-    <meta name="description" content="Object.defineProperty() 方法可以直接在一个对象上定义一个新属性，或者修改一个对象的现有属性，并返回此对象。 12345678910111213141516var obj &#x3D; &amp;#123;name:&amp;#x27;张三&amp;#x27;, age:19&amp;#125;;var new_obj &#x3D; Object.defineProperty(obj, &quot;name&quot;, &amp;#">
+    <meta name="description" content="Object.defineProperty() 方法可以直接在一个对象上定义一个新属性，或者修改一个对象的现有属性，并返回此对象。 value、writable、enumerable1234567891011121314151617&#x2F;&#x2F; valuevar obj &#x3D; &amp;#123;name:&amp;#x27;张三&amp;#x27;, age:19&amp;#125;;var new_obj &#x3D; Object.defin">
 <meta property="og:type" content="article">
 <meta property="og:title" content="defineProperty">
 <meta property="og:url" content="http://example.com/2022/04/22/defineProperty/index.html">
 <meta property="og:site_name" content="zbBlog">
-<meta property="og:description" content="Object.defineProperty() 方法可以直接在一个对象上定义一个新属性，或者修改一个对象的现有属性，并返回此对象。 12345678910111213141516var obj &#x3D; &amp;#123;name:&amp;#x27;张三&amp;#x27;, age:19&amp;#125;;var new_obj &#x3D; Object.defineProperty(obj, &quot;name&quot;, &amp;#">
+<meta property="og:description" content="Object.defineProperty() 方法可以直接在一个对象上定义一个新属性，或者修改一个对象的现有属性，并返回此对象。 value、writable、enumerable1234567891011121314151617&#x2F;&#x2F; valuevar obj &#x3D; &amp;#123;name:&amp;#x27;张三&amp;#x27;, age:19&amp;#125;;var new_obj &#x3D; Object.defin">
 <meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://example.com/2022/04/22/defineProperty/writable.png">
+<meta property="og:image" content="http://example.com/2022/04/22/defineProperty/xinjiashuxing.png">
 <meta property="article:published_time" content="2022-04-22T12:16:29.000Z">
-<meta property="article:modified_time" content="2023-02-22T16:35:41.369Z">
+<meta property="article:modified_time" content="2023-02-23T04:44:59.008Z">
 <meta property="article:author" content="zzb">
 <meta property="article:tag" content="es5">
 <meta property="article:tag" content="自定义属性">
 <meta property="article:tag" content="属性控制">
 <meta property="article:tag" content="Object方法">
 <meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="http://example.com/2022/04/22/defineProperty/writable.png">
   
   
     <meta name="referrer" content="no-referrer-when-downgrade">
@@ -225,7 +228,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          501 字
+          1.6k 字
         
       </span>
     
@@ -236,7 +239,7 @@
         
         
         
-          5 分钟
+          14 分钟
         
       </span>
     
@@ -280,7 +283,30 @@
               <div class="markdown-body">
                 
                 <p>Object.defineProperty() 方法可以直接在一个对象上定义一个新属性，或者修改一个对象的现有属性，并返回此对象。</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><code class="hljs JS"><span class="hljs-keyword">var</span> obj = &#123;<span class="hljs-attr">name</span>:<span class="hljs-string">&#x27;张三&#x27;</span>, <span class="hljs-attr">age</span>:<span class="hljs-number">19</span>&#125;;<br><span class="hljs-keyword">var</span> new_obj = <span class="hljs-title class_">Object</span>.<span class="hljs-title function_">defineProperty</span>(obj, <span class="hljs-string">&quot;name&quot;</span>, &#123;<br>  <span class="hljs-attr">get</span>: <span class="hljs-keyword">function</span>(<span class="hljs-params"></span>)&#123;<br>    <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">&quot;调用了get方法&quot;</span>);<br>    <span class="hljs-keyword">return</span> obj[<span class="hljs-string">&#x27;name&#x27;</span>];<br>  &#125;,<br>  <span class="hljs-attr">set</span>: <span class="hljs-keyword">function</span>(<span class="hljs-params">value</span>)&#123;<br>    <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">&quot;调用了set方法&quot;</span>);<br>    obj[<span class="hljs-string">&#x27;name&#x27;</span>] = value;<br>  &#125;<br>&#125;)<br><span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(obj === new_obj)<span class="hljs-comment">//true</span><br><span class="hljs-comment">// 注意：调用set和get函数时一定要外面包一层函数，否则会一直递归执行（下面两行代码不能直接执行）</span><br>new_obj.<span class="hljs-property">name</span>;<br>obj.<span class="hljs-property">name</span> = <span class="hljs-string">&quot;李四&quot;</span><br><br></code></pre></td></tr></table></figure>
+<h3 id="value、writable、enumerable"><a href="#value、writable、enumerable" class="headerlink" title="value、writable、enumerable"></a>value、writable、enumerable</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><code class="hljs JS"><span class="hljs-comment">// value</span><br><span class="hljs-keyword">var</span> obj = &#123;<span class="hljs-attr">name</span>:<span class="hljs-string">&#x27;张三&#x27;</span>, <span class="hljs-attr">age</span>:<span class="hljs-number">19</span>&#125;;<br><span class="hljs-keyword">var</span> new_obj = <span class="hljs-title class_">Object</span>.<span class="hljs-title function_">defineProperty</span>(obj, <span class="hljs-string">&quot;name&quot;</span>, &#123;<br>  <span class="hljs-attr">value</span>:<span class="hljs-string">&#x27;李四&#x27;</span><br>&#125;)<br><span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(obj === new_obj)<span class="hljs-comment">//true</span><br><span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(obj.<span class="hljs-property">name</span>)<span class="hljs-comment">//张三</span><br><br><span class="hljs-comment">// writable</span><br><span class="hljs-keyword">var</span> obj2 = &#123;<span class="hljs-attr">name</span>:<span class="hljs-string">&#x27;张三&#x27;</span>, <span class="hljs-attr">age</span>:<span class="hljs-number">19</span>, <span class="hljs-attr">id</span>:<span class="hljs-number">1101</span>&#125;;<br><span class="hljs-keyword">var</span> new_obj = <span class="hljs-title class_">Object</span>.<span class="hljs-title function_">defineProperty</span>(obj2, <span class="hljs-string">&quot;id&quot;</span>, &#123;<br>  <span class="hljs-attr">writable</span>:<span class="hljs-literal">false</span><br>&#125;)<br><span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(obj2);<br>obj2.<span class="hljs-property">id</span> = <span class="hljs-number">100</span>;<span class="hljs-comment">//可以进行赋值，但不会生效</span><br><span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(obj2);<span class="hljs-comment">//obj.id仍然为1101</span><br><br></code></pre></td></tr></table></figure>
+
+<center>
+    <img src="writable.png" srcset="/img/loading.gif" lazyload>
+    <br>
+    <div style="color:orange; border-bottom: 1px solid #d9d9d9;
+    display: inline-block;
+    color: #999;
+    padding: 2px;">给对象某一个属性设置writable属性为false后，修改该属性不会生效（该属性无法被修改）</div>
+</center>
+
+<h3 id="enumerable"><a href="#enumerable" class="headerlink" title="enumerable"></a>enumerable</h3><p>默认情况下Object.defineProperty新添加的属性是不可修改的（不能用obj3.address&#x3D;”湖南”这种方式进行修改），且不能被for…in和Object.keys方法进行遍历到的。但通过属性赋值操作添加的普通属性是可以被枚举的例如var o &#x3D; {a:1};o.b&#x3D;2;那么对象o的b属性是可以被枚举出来的，但用Object.defineProperty添加的新属性默认是不能被枚举和修改的。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><code class="hljs JS"><br><span class="hljs-keyword">var</span> obj3 = &#123;<span class="hljs-attr">name</span>:<span class="hljs-string">&#x27;王五&#x27;</span>, <span class="hljs-attr">age</span>:<span class="hljs-number">29</span>, <span class="hljs-attr">id</span>:<span class="hljs-number">1102</span>&#125;;<br><span class="hljs-keyword">var</span> new_obj = <span class="hljs-title class_">Object</span>.<span class="hljs-title function_">defineProperty</span>(obj3, <span class="hljs-string">&quot;address&quot;</span>, &#123;<br>  <span class="hljs-attr">writable</span>:<span class="hljs-literal">false</span>,<span class="hljs-comment">//该属性值默认就是fasle，所以不写也是一样的效果</span><br>  <span class="hljs-attr">enumerable</span>:<span class="hljs-literal">false</span>,<span class="hljs-comment">//该属性值默认就是fasle，所以不写也是一样的效果</span><br>  <span class="hljs-attr">value</span>:<span class="hljs-string">&quot;上海&quot;</span><br>&#125;)<br><span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(obj3);<br>obj3.<span class="hljs-property">address</span> = <span class="hljs-string">&quot;北京&quot;</span>;<span class="hljs-comment">//可以进行赋值，但不会生效</span><br><span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(obj3);<span class="hljs-comment">//obj.address仍然为上海</span><br><br></code></pre></td></tr></table></figure>
+
+<center>
+    <img src="xinjiashuxing.png" srcset="/img/loading.gif" lazyload>
+    <br>
+    <div style="color:orange; border-bottom: 1px solid #d9d9d9;
+    display: inline-block;
+    color: #999;
+    padding: 2px;">用Object.defineProperty添加的新属性默认是不能被枚举和修改的</div>
+</center>
+
+<h3 id="setter、getter"><a href="#setter、getter" class="headerlink" title="setter、getter"></a>setter、getter</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><code class="hljs JS"><span class="hljs-keyword">var</span> obj = &#123;<span class="hljs-attr">name</span>:<span class="hljs-string">&#x27;张三&#x27;</span>, <span class="hljs-attr">age</span>:<span class="hljs-number">19</span>&#125;;<br><span class="hljs-keyword">var</span> new_obj = <span class="hljs-title class_">Object</span>.<span class="hljs-title function_">defineProperty</span>(obj, <span class="hljs-string">&quot;name&quot;</span>, &#123;<br>  <span class="hljs-attr">get</span>: <span class="hljs-keyword">function</span>(<span class="hljs-params"></span>)&#123;<br>    <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">&quot;调用了get方法&quot;</span>);<br>    <span class="hljs-keyword">return</span> obj[<span class="hljs-string">&#x27;name&#x27;</span>];<br>  &#125;,<br>  <span class="hljs-attr">set</span>: <span class="hljs-keyword">function</span>(<span class="hljs-params">value</span>)&#123;<br>    <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">&quot;调用了set方法&quot;</span>);<br>    obj[<span class="hljs-string">&#x27;name&#x27;</span>] = value;<br>  &#125;<br>&#125;)<br><span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(obj === new_obj)<span class="hljs-comment">//true</span><br><span class="hljs-comment">// 注意：调用set和get函数时一定要外面包一层函数，否则会一直递归执行（下面两行代码不能直接执行）</span><br>new_obj.<span class="hljs-property">name</span>;<br>obj.<span class="hljs-property">name</span> = <span class="hljs-string">&quot;李四&quot;</span><br><br></code></pre></td></tr></table></figure>
 
                 
               </div>
@@ -377,9 +403,9 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2023/02/20/hello-world/" title="Hello World">
+                      <a href="/2022/06/13/jsonp/" title="jsonp">
                         <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">Hello World</span>
+                        <span class="hidden-mobile">jsonp</span>
                         <span class="visible-mobile">上一篇</span>
                       </a>
                     
