@@ -16,18 +16,18 @@
   <meta name="author" content="zzb">
   <meta name="keywords" content="">
   
-    <meta name="description" content="jsonp是一种传统的能够跨域请求服务端数据的一种前后端通信方式（其实现在的网页也还在使用这种技术）。 Jsonp原理简介1.利用的就是script标签src属性没有跨域限制来实现的（Ajax请求是受到浏览器跨域限制的，需要设置服务器设置响应头CORS来 解决跨域，但script、img等标签的src属性天然就能发get请求，但这种请求并不是普通的ajax请求）  　　　　（1） script的特">
+    <meta name="description" content="jsonp是一种传统的能够跨域请求服务端数据的一种前后端通信方式（其实现在的网页也还在使用这种技术）。 Jsonp原理简介1.利用的就是script标签src属性没有跨域限制来实现的（Ajax请求是受到浏览器跨域限制的，需要设置服务器设置响应头CORS来 解决跨域，但script、img等标签的src属性天然就能发get请求，但这种请求并不是普通的ajax请求）  （1） script的特性：会将">
 <meta property="og:type" content="article">
 <meta property="og:title" content="jsonp">
 <meta property="og:url" content="http://example.com/2022/06/13/jsonp/index.html">
 <meta property="og:site_name" content="zbBlog">
-<meta property="og:description" content="jsonp是一种传统的能够跨域请求服务端数据的一种前后端通信方式（其实现在的网页也还在使用这种技术）。 Jsonp原理简介1.利用的就是script标签src属性没有跨域限制来实现的（Ajax请求是受到浏览器跨域限制的，需要设置服务器设置响应头CORS来 解决跨域，但script、img等标签的src属性天然就能发get请求，但这种请求并不是普通的ajax请求）  　　　　（1） script的特">
+<meta property="og:description" content="jsonp是一种传统的能够跨域请求服务端数据的一种前后端通信方式（其实现在的网页也还在使用这种技术）。 Jsonp原理简介1.利用的就是script标签src属性没有跨域限制来实现的（Ajax请求是受到浏览器跨域限制的，需要设置服务器设置响应头CORS来 解决跨域，但script、img等标签的src属性天然就能发get请求，但这种请求并不是普通的ajax请求）  （1） script的特性：会将">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="http://example.com/2022/06/13/jsonp/jsonp.png">
 <meta property="og:image" content="http://example.com/2022/06/13/jsonp/font.png">
 <meta property="og:image" content="http://example.com/2022/06/13/jsonp/back.png">
 <meta property="article:published_time" content="2022-06-13T11:37:05.000Z">
-<meta property="article:modified_time" content="2023-02-23T08:09:05.716Z">
+<meta property="article:modified_time" content="2023-02-23T08:19:02.921Z">
 <meta property="article:author" content="zzb">
 <meta property="article:tag" content="js ">
 <meta property="article:tag" content="jsonp">
@@ -289,10 +289,10 @@
 <h3 id="Jsonp原理简介"><a href="#Jsonp原理简介" class="headerlink" title="Jsonp原理简介"></a>Jsonp原理简介</h3><pre><code class="hljs">1.利用的就是script标签src属性没有跨域限制来实现的（Ajax请求是受到浏览器跨域限制的，需要设置服务器设置响应头CORS来
 解决跨域，但script、img等标签的src属性天然就能发get请求，但这种请求并不是普通的ajax请求）
 </code></pre>
-<p>　　　　（1） script的特性：会将引用的外部文件的文本内容当做js代码来进行解析</p>
-<p>　　　　（2） 发送get请求将远程服务器的资源添（往往是一段JavaScript代码）加载到浏览器进行解析并执行</p>
-<p>　　　　（3） json的格式：属性名必须有冒号，例如{“score”：99}</p>
-<p>　　　　（4） jsonp&#x3D;&#x3D;json+padding</p>
+<p>（1） script的特性：会将引用的外部文件的文本内容当做js代码来进行解析</p>
+<p>（2） 发送get请求将远程服务器的资源添（往往是一段JavaScript代码）加载到浏览器进行解析并执行</p>
+<p>（3） json的格式：属性名必须有冒号，例如{“score”：99}</p>
+<p>（4） jsonp&#x3D;&#x3D;json+padding</p>
 <center>
     <img src="jsonp.png" srcset="/img/loading.gif" lazyload>
     <br>
@@ -304,10 +304,10 @@
 
 <pre><code class="hljs">2.执行的过程
 </code></pre>
-<p>　　　　（1）前、端约定好一个解析函数，例如  function myJsonpHander(data){ console.log(data) }</p>
-<p>　　　　（2）通过query的形式包装script的请求参数，并且声明执行函数如http://127.0.0.1:8088&#x2F;jsonp?cb&#x3D;myJsonpHander</p>
-<p>　　　　（3）后端获取到前端声明的执行函数（myJsonpHander），把数据以json的格式拼接成函数调用的方式，最终把这个拼接好的字符串发送给前端</p>
-<p>　　　　（4）前端在script标签返回资源的时候就回执行服务端返回那段js字符串代码，并以回调函数的方式拿到返回的数据了</p>
+<p>（1）前、端约定好一个解析函数，例如  function myJsonpHander(data){ console.log(data) }</p>
+<p>（2）通过query的形式包装script的请求参数，并且声明执行函数如http://127.0.0.1:8088&#x2F;jsonp?cb&#x3D;myJsonpHander</p>
+<p>（3）后端获取到前端声明的执行函数（myJsonpHander），把数据以json的格式拼接成函数调用的方式，最终把这个拼接好的字符串发送给前端</p>
+<p>（4）前端在script标签返回资源的时候就回执行服务端返回那段js字符串代码，并以回调函数的方式拿到返回的数据了</p>
 <center>
     <img src="font.png" srcset="/img/loading.gif" lazyload>
     <br>
@@ -327,7 +327,7 @@
 
 <pre><code class="hljs">3.优缺点
 </code></pre>
-<p>　　　　（1）缺点：只能进行get请求，优点：兼容性好，在一些老的浏览器中也可以运行</p>
+<p>（1）缺点：只能进行get请求，优点：兼容性好，在一些老的浏览器中也可以运行</p>
 <h3 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h3><p>服务器代码</p>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br></pre></td><td class="code"><pre><code class="hljs JS"><span class="hljs-keyword">const</span> http = <span class="hljs-built_in">require</span>(<span class="hljs-string">&#x27;http&#x27;</span>);<br><span class="hljs-keyword">const</span> fs = <span class="hljs-built_in">require</span>(<span class="hljs-string">&quot;fs&quot;</span>);<br><span class="hljs-keyword">const</span> url = <span class="hljs-built_in">require</span>(<span class="hljs-string">&#x27;url&#x27;</span>);<span class="hljs-comment">//url模块专门用来解析request.url（处理请求路径）</span><br>http.<span class="hljs-title function_">createServer</span>(<span class="hljs-keyword">function</span> (<span class="hljs-params">request, response</span>) &#123;<br>  <span class="hljs-keyword">let</span> parsedUrl = url.<span class="hljs-title function_">parse</span>(request.<span class="hljs-property">url</span>, <span class="hljs-literal">true</span>)<br>  <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(parsedUrl)<br>  <span class="hljs-keyword">const</span> &#123;search, query, pathname&#125; = parsedUrl<br>  <span class="hljs-keyword">if</span>(pathname === <span class="hljs-string">&quot;/favicon.ico&quot;</span>)&#123;<br>    fs.<span class="hljs-title function_">readFile</span>(<span class="hljs-string">&quot;./favicon.ico&quot;</span>,<span class="hljs-function">(<span class="hljs-params">err, dataStr</span>)=&gt;</span>&#123;<br>      <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(dataStr)<span class="hljs-comment">//buffer</span><br>      response.<span class="hljs-title function_">writeHead</span>(<span class="hljs-number">200</span>, &#123;<span class="hljs-string">&#x27;Content-Type&#x27;</span>: <span class="hljs-string">&#x27;image/x-icon&#x27;</span>&#125;);<br>      <span class="hljs-keyword">return</span> response.<span class="hljs-title function_">end</span>(dataStr);<br>    &#125;)<br>  &#125;<span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span>(pathname === <span class="hljs-string">&quot;/jsonp&quot;</span>)&#123;<br>    <span class="hljs-keyword">if</span>(query.<span class="hljs-property">cb</span> === <span class="hljs-string">&quot;myJsonpHander&quot;</span>)&#123;<br>      <span class="hljs-keyword">const</span> obj = &#123;<br>        <span class="hljs-attr">name</span>:<span class="hljs-string">&#x27;tom&#x27;</span>,<br>        <span class="hljs-attr">age</span>:<span class="hljs-number">19</span>,<br>        <span class="hljs-attr">scores</span>:[<br>          &#123;<span class="hljs-attr">math</span>:<span class="hljs-number">100</span>, <span class="hljs-attr">english</span>:<span class="hljs-number">90</span>, <span class="hljs-attr">java</span>:<span class="hljs-number">80</span>, <span class="hljs-attr">time</span>:<span class="hljs-number">1</span>&#125;, <br>          &#123;<span class="hljs-attr">math</span>:<span class="hljs-number">89</span>, <span class="hljs-attr">english</span>:<span class="hljs-number">86</span>, <span class="hljs-attr">java</span>:<span class="hljs-number">80</span>, <span class="hljs-attr">time</span>:<span class="hljs-number">2</span>&#125;,<br>          &#123;<span class="hljs-attr">math</span>:<span class="hljs-number">96</span>, <span class="hljs-attr">english</span>:<span class="hljs-number">40</span>, <span class="hljs-attr">java</span>:<span class="hljs-number">90</span>, <span class="hljs-attr">time</span>:<span class="hljs-number">3</span>&#125;,]<br>      &#125;<br>      <span class="hljs-comment">// 构建返回前端的js代码（就是一段普通js字符串）</span><br>      <span class="hljs-keyword">const</span> cbStr =  <span class="hljs-string">`</span><br><span class="hljs-string">      try&#123;</span><br><span class="hljs-string">        myJsonpHander(<span class="hljs-subst">$&#123;<span class="hljs-built_in">JSON</span>.stringify(obj)&#125;</span>);</span><br><span class="hljs-string">      &#125;catch(e)&#123;&#125;</span><br><span class="hljs-string">      `</span><br>      response.<span class="hljs-title function_">writeHead</span>(<span class="hljs-number">200</span>, &#123;<span class="hljs-string">&#x27;Content-Type&#x27;</span>: <span class="hljs-string">&#x27;text/plain&#x27;</span>&#125;);<br>      response.<span class="hljs-title function_">end</span>(cbStr);<br>    &#125;<br>  &#125;<span class="hljs-keyword">else</span>&#123;<br>    response.<span class="hljs-title function_">writeHead</span>(<span class="hljs-number">200</span>, &#123;<span class="hljs-string">&#x27;Content-Type&#x27;</span>: <span class="hljs-string">&#x27;text/plain&#x27;</span>&#125;);<br>    response.<span class="hljs-title function_">end</span>(<span class="hljs-string">&#x27;Hello World&#x27;</span>);<br>  &#125;<br><br>&#125;).<span class="hljs-title function_">listen</span>(<span class="hljs-number">8088</span>);<br><br><span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">&#x27;Server running at http://127.0.0.1:8088/&#x27;</span>);<br><br></code></pre></td></tr></table></figure>
 
